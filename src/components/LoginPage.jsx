@@ -158,6 +158,10 @@ export default class LoginPage extends React.Component{
                   required: true,
                   message: 'Please input your E-mail!',
                 },
+                 {
+                  pattern: /^([A-Za-z0-9_\-\.])+\@(bellevuecollege.edu)$/,
+                  message: 'You need to use a BC email address',
+                },
               ]}>
               <Input placeholder="E-mail address" />
              </Form.Item>
