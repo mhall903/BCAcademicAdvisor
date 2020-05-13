@@ -158,13 +158,37 @@ export default class LoginPage extends React.Component{
                   required: true,
                   message: 'Please input your E-mail!',
                 },
-                 {
+                {
                   pattern: /^([A-Za-z0-9_\-\.])+\@(bellevuecollege.edu)$/,
                   message: 'You need to use a BC email address',
                 },
               ]}>
               <Input placeholder="E-mail address" />
              </Form.Item>
+
+             <Form.Item
+              name="First name"
+              label="First name"                    
+              rules={[
+                     {
+                           required: true,
+                           message: 'Please input your First name!',
+                         },
+                       ]}>
+               <Input placeholder="First name" />
+            </Form.Item>
+          <Form.Item
+              name="Last name"
+              label="Last name"                    
+              rules={[
+                     {
+                           required: true,
+                           message: 'Please input your Last name!',
+                         },
+                       ]}>
+               <Input placeholder="Last name" />
+            </Form.Item>
+
             <Form.Item
              name="Password_Register1"
              label="Password"                    
@@ -177,6 +201,8 @@ export default class LoginPage extends React.Component{
               <Input.Password placeholder="Password" />
               
              </Form.Item>
+
+          
 
              <Form.Item
         name="confirm"
