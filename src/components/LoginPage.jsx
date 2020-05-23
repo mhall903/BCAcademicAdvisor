@@ -1,12 +1,27 @@
-import React from 'react';
+import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
 import {Auth} from 'aws-amplify';
 import {Tabs, Row, Col,Card,Input, Form,Button,Select } from 'antd';
 import homebackground from './bellevuecollege2.png';
 import { Link ,BrowserRouter} from 'react-router-dom'
+import RegisterPage from './RegisterPage';
 
 
-const {TabPane} = Tabs;
+
+      
+
+export default function LoginPage() {
+  /*  state = {
+      loadings: [],
+      username:[],
+      password:[],
+    }*/
+
+    const [username, setUser] = useState("");
+    const [password, setPassword] = useState("");
+    const [loadings, setLoadings] = useState("");
+
+    const {TabPane} = Tabs;
 
 const homeImage = {
   backgroundImage: 'url(' + homebackground + ')',
@@ -18,58 +33,67 @@ const homeImage = {
 }
 
 
-function callback(key) {
-    console.log(key);
-  }
-
-        const onFinish = values => {
-            console.log('Success:',values);
-        };
-        const onFinishFailed  = errorInfo => {
-            console.log('Failed:',errorInfo)
-        }
-           
-        const layout = {
-            labelCol: {
-              span: 0,
-            },
-            wrapperCol: {
-              span: 20,
-            },
-          };
-          const tailLayout = {
-            wrapperCol: {
-              offset: 8,
-              span: 16,
-            },
-          };
-
-      
-
-export default class LoginPage extends React.Component{
-    state = {
-      loadings: [],
-    }
-    formRef = React.createRef();
-
-    enterLoading = index => {
-      console.log(index);
-      const newLoadings = [...this.state.loadings];
-      newLoadings[index] = true;
-      this.setState({
-        loadings: newLoadings,
-      });
-      setTimeout(() => {
-        newLoadings[index] = false;
-        this.setState({ loadings: newLoadings });
-      }, 5000);
-      
-    };
 
     
+    async function handleLogin(event){
+      try{
+        const user = await Auth.signIn(username,password);
+        console.log(user);
+      }catch(e){
+        alert(e.message);
+      }
+    
+    }
+    
+    
+    function callback(key) {
+        console.log(key);
+      }
+    
+            const onFinish = values => {
+                console.log('Success:',values);
+            };
+            const onFinishFailed  = errorInfo => {
+                console.log('Failed:',errorInfo)
+            }
+               
+            const layout = {
+                labelCol: {
+                  span: 0,
+                },
+                wrapperCol: {
+                  span: 20,
+                },
+              };
+              const tailLayout = {
+                wrapperCol: {
+                  offset: 8,
+                  span: 16,
+                },
+              };
+    
 
-    render(){
-      const { loadings } = this.state;
+              var formRef = React.createRef();
+
+
+             var enterLoading = index => {
+                console.log(index);
+                const newLoadings = [...loadings];
+                newLoadings[index] = true;
+                /*this.setState({
+                  loadings: newLoadings,
+                });*/
+                setLoadings(newLoadings)
+                setTimeout(() => {
+                  newLoadings[index] = false;
+                  //this.setState({ loadings: newLoadings });
+                setLoadings(newLoadings)
+                }, 5000);
+                
+              };
+          
+
+      //const { loadings } = this.state;
         return (
           
           
@@ -81,8 +105,8 @@ export default class LoginPage extends React.Component{
             <TabPane tab="Login" key="1">
             <Form
                 {...layout}
-                ref={this.formRef}
-                onFinish = {onFinish}
+                ref={formRef}
+                onFinish = {handleLogin}
                 onFinishFailed={onFinishFailed }
                 >
                 <Row type="flex" justify="center" align="middle" >
@@ -91,6 +115,7 @@ export default class LoginPage extends React.Component{
             
 
             <Form.Item
+            onChange={e => setUser(e.target.value)}
              name="E-mail_Login"
              label="E-mail address"                    
              rules={[
@@ -104,8 +129,10 @@ export default class LoginPage extends React.Component{
                 },
               ]}>
               <Input placeholder="E-mail address" />
+              
              </Form.Item>
             <Form.Item
+            onChange={e => setPassword(e.target.value)}
              name="Password_Login"
              label="Password"                    
              rules={[
@@ -119,151 +146,21 @@ export default class LoginPage extends React.Component{
             <div style={{ margin: '24px 0' }} />
 
             <Form.Item {...tailLayout}>
-            <Link to ='/Console'>
+          
+            {/*<Link to ='/Console'> */}
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-         </Link>
+         {/*</Link> */}
             </Form.Item>
             <div style={{ margin: '24px 0' }} />
             </Col>
             </Row>
             </Form>
             </TabPane>
-
-
             <TabPane tab="Register" key="2">
-
-
-               <Form
-                {...layout}
-                ref={this.formRef}
-                onFinish = {onFinish}
-                onFinishFailed={onFinishFailed }
-                >
-                <Row type="flex" justify="center" align="middle" >
-                <Col  type = "flex" >
-               
-            
-
-            <Form.Item
-             name="E-mail_Register"
-             label="E-mail address"                    
-             rules={[
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
-                {
-                  pattern: /^([A-Za-z0-9_\-\.])+\@(bellevuecollege.edu)$/,
-                  message: 'You need to use a BC email address',
-                },
-              ]}>
-              <Input placeholder="E-mail address" />
-             </Form.Item>
-
-             <Form.Item
-              name="First name"
-              label="First name"                    
-              rules={[
-                     {
-                           required: true,
-                           message: 'Please input your First name!',
-                         },
-                       ]}>
-               <Input placeholder="First name" />
-            </Form.Item>
-          <Form.Item
-              name="Last name"
-              label="Last name"                    
-              rules={[
-                     {
-                           required: true,
-                           message: 'Please input your Last name!',
-                         },
-                       ]}>
-               <Input placeholder="Last name" />
-            </Form.Item>
-
-            <Form.Item
-             name="Password_Register1"
-             label="Password"                    
-             rules={[
-                    {
-                          required: true,
-                          message: 'Please input your Password!',
-                        },
-                      ]}>
-              <Input.Password placeholder="Password" />
-              
-             </Form.Item>
-
-          
-
-             <Form.Item
-        name="confirm"
-        label="Confirm Password"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(rule, value) {
-              if (!value || getFieldValue('Password_Register1') === value) {
-                return Promise.resolve();
-              }
-
-              return Promise.reject('The two passwords that you entered do not match!');
-            },
-          }),
-        ]}
-      >
-          <Input.Password />
-          </Form.Item>
-
-             <Form.Item 
-             name= "status"
-             label="Choose your status "
-             rules={[
-                {
-                      required: true,
-                      message: 'Please choose your status!',
-                    },
-                  ]}>
-              <Select>
-            <Select.Option value="1">Current Student</Select.Option>
-            <Select.Option value="2">Future Student</Select.Option>
-            <Select.Option value="3">International Student</Select.Option>
-            <Select.Option value="4">Others</Select.Option>
-          </Select>
-          
-        </Form.Item>
-            <div style={{ margin: '24px 0' }} />
-            
-
-
-            <Form.Item {...tailLayout}>
-
-        <Button htmlType="submit" type="primary" loading={loadings[0]} onClick={() => this.enterLoading(0)} >
-          Submit
-        </Button>
-
-       
-
-            </Form.Item>
-            <div style={{ margin: '24px 0' }} />
-            </Col>
-            </Row>
-            </Form>
+                <RegisterPage></RegisterPage>
             </TabPane>
-
             </Tabs>
             </Card>
             </Col>
@@ -272,4 +169,3 @@ export default class LoginPage extends React.Component{
             
         )
     }
-}
