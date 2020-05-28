@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import Clist from './Clist'
+import 'antd/dist/antd.css';
 import Trans from './Transfer'
 import {API} from 'aws-amplify'
 import LoadingOverlay from 'react-loading-overlay'
@@ -16,6 +16,7 @@ import {
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+/* For testing
 var cc=[
     {dep:"CS", no:101,name:"intro to CS"},
     {dep:"CS", no:102,name:"data structure"},
@@ -27,7 +28,7 @@ var cc=[
     {dep:"ENG", no:102,name:"grammar"},
     {dep:"ENG", no:103,name:"writing fiction"}
 
-]
+]*/
 
 
 export default class Sidebar extends React.Component {

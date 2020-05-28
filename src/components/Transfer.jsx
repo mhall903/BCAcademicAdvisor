@@ -158,32 +158,7 @@ export default class Trans extends React.Component {
       }
     }
 
-    /*
-    // Render slug data 
-    for (let i = 0; i < arr.length; i++) {
-      mockData.push({
-        key: arr[i].slug,
-        title: arr[i].slug,
-        description: arr[i].title,
-        //disabled: i % 4 === 0,
-        tag: arr[i].coursePrefixes
-      });
-    }
-    */
-
-    /*
-    for (let i = 0; i < arr.length; i++) {
-      mockData.push({
-        key: arr[i].dep+" "+arr[i].no,
-        title: arr[i].dep+arr[i].no,
-        description: arr[i].name,
-        //disabled: i % 4 === 0,
-        tag: arr[i].dep,
-      });
-    }
-    */
-
-    const { targetKeys, disabled, showSearch } = this.state;
+    const {  disabled, showSearch } = this.state;
     return (
         <div>
           <h1 style={{ color:"#FF8F59", fontSize: '35px', fontWeight: 200, textAlign: 'center' }}>Course Management</h1>

@@ -1,6 +1,6 @@
 import { Result, Button } from 'antd';
 import React from 'react';
-import { Link ,BrowserRouter} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default class NotFound extends React.Component{
     

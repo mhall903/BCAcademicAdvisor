@@ -17,6 +17,24 @@ class Clist extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    /*
+    async pullSlugList() {
+        try {
+        const returnedSlugs = await this.loadSlugs();
+        console.log(returnedSlugs);
+        }
+        catch (e) {
+        console.log("Failure");
+        console.log(e);
+        }
+    }
+
+    loadSlugs() {
+        console.log("Loading slugs");
+        return API.get("bcadmin", "/slug");
+    }
+    */
+
     state = { visible: false };
 
     showDrawer = () => {
@@ -77,6 +95,8 @@ class Clist extends React.Component {
         return tempArr
     }
 
+    handleShow(event, course) {
+    }
 
 
     render() {

@@ -8,7 +8,6 @@ import {
   Button,
   Alert,
 } from "antd";
-import homebackground from "./bellevuecollege2.png";
 import { useHistory } from "react-router-dom";
 
 export default function Register() {
@@ -33,7 +32,7 @@ export default function Register() {
           email: email,
         },
       };
-      const user = await Auth.signUp(userInfo);
+      /*const user = */await Auth.signUp(userInfo);
       ConfirmWindow();
     } catch (e) {
       //alert(e.message);
@@ -121,7 +120,7 @@ export default function Register() {
                   message: "Please input your E-mail!",
                 },
                 {
-                  pattern: /^([A-Za-z0-9_\-\.])+\@(bellevuecollege.edu)$/,
+                  pattern: /^([A-Za-z0-9_\-.])+@(bellevuecollege.edu)$/,
                   message: "You need to use a BC email address",
                 },
               ]}

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Link, BrowserRouter, Redirect } from 'react-router-dom'
+import React from 'react';
 import homebackground from './bg.jpg';
 import { RightSquareFilled } from '@ant-design/icons'
 import './Home.css'
@@ -29,11 +28,6 @@ function HomePage() {
     e.target.style.fontSize = '100px';
   }
 
-  function redirectToSuccess() {
-    this.props.history.push('/LoginPage')
-  }
-
-
   return (
     <div id="c1" style={homeImage}
       justifyContent='center'
@@ -42,8 +36,6 @@ function HomePage() {
       <RightSquareFilled
         style={icon}
         fontSize='100px'
-        onMouseEnter={Larger}
-        onMouseEnter={Smaller}
       />
       {/**</Link> */}
     </div>

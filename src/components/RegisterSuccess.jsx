@@ -36,7 +36,7 @@ export default class RegisterSuccess extends React.Component {
   //send userID and confirm number to Cognito
   async Confirm() {
     try {
-      const user = await Auth.confirmSignUp(
+      /*const user = */await Auth.confirmSignUp(
         this.state.email.email,
         this.state.code
       );
