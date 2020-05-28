@@ -1,29 +1,22 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import { Auth } from "aws-amplify";
 import {
-  Tabs,
   Row,
   Col,
-  Card,
   Input,
   Form,
   Button,
-  Select,
   Alert,
-  Modal,
 } from "antd";
 import homebackground from "./bellevuecollege2.png";
-import { Link, BrowserRouter, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Register() {
-  const [username, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [loadings, setLoadings] = useState("");
   const [err, setErr] = useState("");
   const [showWarning, setWarning] = useState(false);
-  const [confirm, setConfirm] = useState(false);
   const history = useHistory();
 
   const onFinishFailed = (errorInfo) => {

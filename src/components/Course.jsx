@@ -1,5 +1,5 @@
 import React from 'react'
-import { Popover, Button } from 'antd';
+import { Button } from 'antd';
 
 //single course component
 class Course extends React.Component{

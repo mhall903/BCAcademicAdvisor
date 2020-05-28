@@ -1,7 +1,7 @@
 import { Transfer, Switch, Table, Tag } from 'antd';
 import difference from 'lodash/difference';
 import React from 'react';
-import { Drawer, Button,Affix,Divider} from 'antd';
+import { Drawer, Button,Divider} from 'antd';
 
 // Customize Table Transfer
 const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (

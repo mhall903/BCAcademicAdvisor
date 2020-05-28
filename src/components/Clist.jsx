@@ -1,9 +1,8 @@
-import React,{ useState,Children } from 'react'
+import React from 'react'
 import Course from './Course'
 import Select from 'react-select'
 import 'antd/dist/antd.css';
 import { Drawer, Button,Affix,Divider} from 'antd';
-import {API} from 'aws-amplify'
 
 class Clist extends React.Component {
     constructor(props) {
@@ -17,24 +16,6 @@ class Clist extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
     }
-
-    /*
-    async pullSlugList() {
-        try {
-        const returnedSlugs = await this.loadSlugs();
-        console.log(returnedSlugs);
-        }
-        catch (e) {
-        console.log("Failure");
-        console.log(e);
-        }
-    }
-
-    loadSlugs() {
-        console.log("Loading slugs");
-        return API.get("bcadmin", "/slug");
-    }
-    */
 
     state = { visible: false };
 
@@ -96,8 +77,6 @@ class Clist extends React.Component {
         return tempArr
     }
 
-    handleShow(event, course) {
-    }
 
 
     render() {

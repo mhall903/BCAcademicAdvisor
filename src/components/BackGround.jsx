@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Tabs, Row, Col,Card,Input, Form,Button,Select} from 'antd';
 import homebackground from './bellevuecollege2.png';
 
 const homeImage = {

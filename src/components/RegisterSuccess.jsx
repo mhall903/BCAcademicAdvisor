@@ -1,7 +1,7 @@
 import { Result, Button, input, Alert } from "antd";
 import React from "react";
 import { Auth } from "aws-amplify";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //I WILL CHANGE THIS TO FUNCTION
 export default class RegisterSuccess extends React.Component {

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import { Auth } from "aws-amplify";
 import { Tabs, Row, Col, Card, Input, Form, Button, Alert } from "antd";
 import homebackground from "./bellevuecollege2.png";
-import { Link, BrowserRouter, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import RegisterPage from "./RegisterPage";
 
 export default function LoginPage() {
 
   const [username, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [loadings, setLoadings] = useState("");
   const history = useHistory();
   const [err, setErr] = useState("");
   const [showWarning, setWarning] = useState(false);
