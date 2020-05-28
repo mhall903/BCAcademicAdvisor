@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Sidebar from './components/Sidebar'
-import LoginPage from './components/LoginPage'
-import BackGround from './components/BackGround'
-import BindEvent from './components/BindEvent'
-import ShowSelected from './components/ShowSelected'
 import Amplify from 'aws-amplify'
 import config from './config';
 import Router from './Router'
