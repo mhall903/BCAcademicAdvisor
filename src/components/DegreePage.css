@@ -1,0 +1,20 @@
+#left {
+    line-height:30px;
+    height:900px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+
+#right {
+    line-height:30px;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+
+.site-card-wrapper {
+    background: #ececec;
+    padding: 30px;
+  }
