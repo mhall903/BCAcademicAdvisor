@@ -1,49 +1,59 @@
-import { Menu } from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { Layout, Menu } from 'antd';
+import {
+  DesktopOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons';
+import React from "react";
+import Router from '../Router';
 
-const { SubMenu } = Menu;
+/**
+ * 
+ * Render Route inside the Sidebar, now every page will share the same sidebar
+ * 
+ * Might still need some change on conditional render, since we don't want 
+ * 
+ * page like 404 having the sidebar...
+ * 
+ */
 
-export default class SidebarV2 extends React.Component {
+const { Header, Content, Footer, Sider } = Layout;
 
-    state = {
-        current: 'mail',
-      };
+ export default class SidebarV2 extends React.Component {
+  state = {
+    collapsed: true,
+  };
 
-    handleClick = e => {
-        console.log('click ', e);
-        this.setState({
-          current: e.key,
-        });
-      };
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  };
 
   render() {
     return (
-        <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-        <Menu.Item key="mail" icon={<MailOutlined />}>
-          Navigation One
-        </Menu.Item>
-        <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-          Navigation Two
-        </Menu.Item>
-        <SubMenu icon={<SettingOutlined />} title="Navigation Three - Submenu">
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <Menu.Item key="bcweb">
-          <a href="https://www2.bellevuecollege.edu/classes/" target="_blank" rel="noopener noreferrer">
-            Full Class List
-          </a>
-        </Menu.Item>
-      </Menu>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <div className="logo" />
+          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+            <Menu.Item key="1" icon={<PieChartOutlined />}>
+              Option 1
+            </Menu.Item>
+            <Menu.Item key="2" icon={<DesktopOutlined />}>
+              Option 2
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Content style={{ margin: '0 16px' }}>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <Router></Router>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>BC advisor</Footer>
+        </Layout>
+      </Layout>
     );
   }
 }
+
 

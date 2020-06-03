@@ -1,3 +1,7 @@
+#Cards {
+    margin-left: 500px;    
+}
+
 #left {
     line-height:30px;
     height:900px;
@@ -13,8 +17,9 @@
     float:left;
     padding:5px; 
 }
-
+/*
 .site-card-wrapper {
     background: #ececec;
     padding: 30px;
   }
+  */

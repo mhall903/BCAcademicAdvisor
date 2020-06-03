@@ -3,7 +3,6 @@ import React from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
 
-//I WILL CHANGE THIS TO FUNCTION
 export default class RegisterSuccess extends React.Component {
   constructor(props) {
     super();

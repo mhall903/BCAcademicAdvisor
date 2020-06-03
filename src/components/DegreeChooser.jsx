@@ -2,14 +2,14 @@ import { Select } from "antd";
 import React from "react";
 import {API} from 'aws-amplify'
 import DegreePage from "./DegreePage";
+import Degree from "./Degree";
+
 
 const { Option } = Select;
 
 const children = [];
-for (let i = 10; i < 36; i++) {
   //load class list here
-  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-}
+  children.push(<Option key={"CS"}>{"CS"}</Option>);
 
 export default class DegreeChooser extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ export default class DegreeChooser extends React.Component {
     };
   }
 
+
   componentDidMount() {
     console.log("Pulling degree information");
     this.pullDegrees();
@@ -27,6 +28,7 @@ export default class DegreeChooser extends React.Component {
 
   async pullDegrees() {
     try {
+      
       const returnedDegrees = await this.loadDegrees();
 
       // name of degree
@@ -67,8 +69,9 @@ export default class DegreeChooser extends React.Component {
       console.log(`Failed to load degree information: ${e.message}`);
       console.log(e);
     }
+    
   }
-
+    
   loadDegrees() {
     console.log("Loading degrees");
     var deg = "CS";
@@ -80,6 +83,7 @@ export default class DegreeChooser extends React.Component {
     this.setState({ degree: value });
     this.props.Callback(value);
   };
+    
   render() {
     return (
       <Select
