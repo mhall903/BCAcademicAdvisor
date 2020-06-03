@@ -1,4 +1,4 @@
-import { Card, Col, Row, Progress, Collapse } from "antd";
+import { Card, Col, Row, Progress} from "antd";
 import {
   CheckCircleTwoTone,
   MinusSquareTwoTone,
@@ -37,7 +37,7 @@ export default class Degree extends React.Component {
 
   handleClick = (i) => {
     const temp = this.state.Progess;
-    if (temp.indexOf(i) == -1) {
+    if (temp.indexOf(i) === -1) {
       temp.push(i);
       //Save the current chosen class
       this.updateMarker(i, <CheckCircleTwoTone twoToneColor="#52c41a" />); //Change the Icon

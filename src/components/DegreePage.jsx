@@ -32,7 +32,7 @@ De: Degree
     //Not sure if each Degree requrie differently, may change
     return (
       <div>
-        <Collapse bordered={false} defaultActiveKey={["0"] }bordered={false}>
+        <Collapse bordered={false} defaultActiveKey={["0"] }>
           <Panel header="Core Classes" key="1">
             <Degree cType={"core"} pDegree={De} key="1">1</Degree>
           </Panel>
