@@ -4,7 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify'
 import config from './config';
-import Router from './Router'
+import SidebarV2 from './components/SidebarV2';
 
 
 
@@ -36,7 +36,7 @@ console.log(typeof(cc))
 ReactDOM.render(
 //    <Sidebar />, mountNode
     
-        <Router/>
+        <SidebarV2/>
         
 
 
