@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage';
 import Sidebar from './components/Sidebar';
 import {HashRouter, Route, Switch} from 'react-router-dom';
 import NotFound from './components/NotFound'
+import Pdf from './components/Pdf';
 
 import RegisterSuccess from './components/RegisterSuccess';
 
@@ -18,6 +19,7 @@ const Router =() => (
         <Route exact path="/Success" component={RegisterSuccess}/>
         <Route exact path="/NotFound" component={NotFound}/>
         <Route exact path="/Console" component={Sidebar}/>
+        <Route exact path="/Pdf" component={Pdf}/>
         <Route path = "*" component={NotFound}/>
 
         
