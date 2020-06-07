@@ -15,6 +15,7 @@ const Router =() => (
     <Switch>
        {/*   <Route exact path="/" component={LoginPage}/>
           <Route exact path="/Home" component={Home}/>*/}
+        <Route exact path="/" component={LoginPage}/>
         <Route exact path="/Login" component={LoginPage}/>
         <Route exact path="/Success" component={RegisterSuccess}/>
         <Route exact path="/NotFound" component={NotFound}/>

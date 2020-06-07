@@ -1,3 +1,6 @@
+# AWS Config
+src/config.js
+
 # Logs
 logs
 *.log

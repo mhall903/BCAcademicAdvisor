@@ -4,8 +4,10 @@ import DataProvider from './PdfDataProvider';
 import PDFViewer from './PdfViewer';
 import PDFJSBackend from './PdfViewerBackend';
 import Table from './PdfViewerTable';
-import axios from 'axios';
+// import axios from 'axios';
 import {PulseLoader} from 'react-spinners';
+import { s3upload } from './awsLibs'; 
+import {Auth} from 'aws-amplify';
 import './Pdf.css'
 
 export default class Pdf extends Component {
@@ -32,7 +34,37 @@ export default class Pdf extends Component {
     });
   };
 
+  async handleUpload() {
+    try {
+      console.log("loading user information");
+      const authResponse = await Auth.currentAuthenticatedUser();
+      console.log(authResponse);
+      console.log("loading user information completed");
+      const response = await s3upload(this.state.selectedFile);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
   clickButton = event => {
+
+    console.log("submit transcript");
+    if (this.state.selectedFile !== null) {
+      try {
+        // s3upload(this.state.selectedFile);
+        this.handleUpload();
+      }
+      catch (e) {
+        console.log(e);
+      }
+    }
+    else {
+      console.log("file is null");
+    }
+    
+    
+    /*
     this.setState({
       isLoading: true
     });
@@ -64,6 +96,7 @@ export default class Pdf extends Component {
     catch (error) {
       console.log(error);
     }
+    */
   };
 
   render() {
