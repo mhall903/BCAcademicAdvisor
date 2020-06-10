@@ -6,8 +6,8 @@ import PDFJSBackend from './PdfViewerBackend';
 import Table from './PdfViewerTable';
 // import axios from 'axios';
 import {PulseLoader} from 'react-spinners';
+import {API, Auth} from 'aws-amplify';
 import { s3upload } from './awsLibs'; 
-import {Auth} from 'aws-amplify';
 import './Pdf.css'
 
 export default class Pdf extends Component {
@@ -18,7 +18,9 @@ export default class Pdf extends Component {
       selectedFile: null,
       selectedFileUrl: null,
       isLoading: false,
-      tableData: []
+      tableData: [],
+      jobId: null,
+      jobPath: null
     };
 
     
@@ -41,10 +43,70 @@ export default class Pdf extends Component {
       console.log(authResponse);
       console.log("loading user information completed");
       const response = await s3upload(this.state.selectedFile);
+
+      // response contains the file title, not the full key
+      console.log("Calling s3 with " + response)
+      const converted = await API.post("bcadmin", "/pdf", {
+        body: response
+      });
+
+      console.log("PDF Job ID");
+      console.log(converted);
+      this.state.jobId = converted;
+      this.state.jobPath = response;
     }
     catch (e) {
       console.log(e);
     }
+  }
+
+  sleep() {
+    console.log("sleeping till response");
+    const date = Date.now();
+    var currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < 10000);
+  }
+
+  async checkJobStatus() {
+    try {
+      var count = 0;
+      var jobStatus = '';
+      do {
+        jobStatus = await API.post("bcadmin", "/pdfScannerResult", {
+          body: [
+            "cc0a693261c08fd68dc1d89f7419ecb02b1558aa3d6536b59673d00bbf74e57e",
+            "us-west-2:4c072669-7f0a-43ce-8087-d5ec4b596cef/1591752437977-BC Unofficial Transcript"
+          ]
+        });
+        /*
+        body: [
+            this.state.jobId,
+            this.state.jobPath
+          ]
+        body: [
+          "cc0a693261c08fd68dc1d89f7419ecb02b1558aa3d6536b59673d00bbf74e57e",
+          "us-west-2:4c072669-7f0a-43ce-8087-d5ec4b596cef/1591752437977-BC Unofficial Transcript"
+        ]
+        */
+
+        console.log(jobStatus);
+        if (jobStatus.length <= 0){
+          this.sleep()
+        }
+
+      } while (jobStatus.length <= 0 && count < 15)
+
+      console.log(jobStatus);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
+  clickButtonStatus = event => {
+    this.checkJobStatus();
   }
 
   clickButton = event => {
@@ -157,7 +219,10 @@ export default class Pdf extends Component {
                 <input type="file" name="datasize" size="30" onChange={this.onChangeHandler} />
               </p>
                 <div>
-                  <input type="submit" value="Submit" onClick={this.clickButton} />
+                  <input type="button" value="Submit" onClick={this.clickButton} />
+                </div>
+                <div>
+                  <input type="button" value="Check Status" onClick={this.clickButtonStatus} />
                 </div>
             </div>      
           </div>
