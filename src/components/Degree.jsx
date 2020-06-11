@@ -1,4 +1,4 @@
-import { Card, Col, Row, Progress} from "antd";
+import { Card, Col, Row, Progress, Tag} from "antd";
 import {
   CheckCircleTwoTone,
   MinusSquareTwoTone,
@@ -40,13 +40,13 @@ export default class Degree extends React.Component {
     if (temp.indexOf(i) === -1) {
       temp.push(i);
       //Save the current chosen class
-      this.updateMarker(i, <CheckCircleTwoTone twoToneColor="#52c41a" />); //Change the Icon
+      this.updateMarker(i, "success"); //Change the Icon
     } else {
       temp.splice(temp.indexOf(i), 1);
       this.setState({
         Progress: temp,
       });
-      this.updateMarker(i, <MinusSquareTwoTone />);
+      this.updateMarker(i, "error");
     }
     this.setState({
       Per: this.state.Progess.length / this.state.RequireNum,
@@ -55,7 +55,7 @@ export default class Degree extends React.Component {
 
   getMarker(i) {
     if (this.state.Marker.get(i) === undefined) {
-      return <CloseCircleTwoTone twoToneColor="#eb2f96" />;
+      return "default";
     } else {
       return this.state.Marker.get(i);
     }
@@ -146,8 +146,8 @@ export default class Degree extends React.Component {
         <div className="site-card-wrapper">
           <Row gutter={16}>
             {this.state.Classes.map((c, i) => (
-              <Col span={8} key={i}>
-                <Card
+              <Col span={2} key={i}>
+                {/** <Card
                   className="custom-card"
                   title={this.getMarker(i)}
                   size="default"
@@ -156,9 +156,10 @@ export default class Degree extends React.Component {
                   key={i}
                   id={i}
                   onClick={() => this.handleClick(i)}
-                >
-                  {c}
-                </Card>
+                {c}
+                </Card>>*/}
+                <Tag color="default" color={this.getMarker(i)} id={i} key={i} onClick={()=>this.handleClick(i)}>{c} </Tag>
+                  
               </Col>
             ))}
           </Row>
