@@ -25,10 +25,18 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 export default class SidebarV2 extends React.Component {
-  state = {
-    collapsed: true,
-    toDashboard: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.updateClasses = this.updateClasses.bind(this);
+    this.state = {
+      collapsed: true,
+      toDashboard: false,
+      classResult: null
+    };
+  }
+  
+
 
   onCollapse = collapsed => {
     console.log(collapsed);
@@ -44,14 +52,17 @@ export default class SidebarV2 extends React.Component {
 
 
 
-
+  updateClasses(results) {
+    this.setState({classResult: results});
+  }
 
   render() {
     let tt = <Login></Login>;
-    console.log(this.state.toDashboard)
     if(this.state.toDashboard === "1"){
       console.log(this.state.toDashboard);
-      tt = <Degree></Degree>   
+      console.log("Class results? ");
+      console.log(this.state.classResult);
+      tt = <Degree classes={this.state.classResult}></Degree>   
     }
     else if(this.state.toDashboard ==="2"){
                console.log(this.state.toDashboard);
@@ -60,7 +71,7 @@ export default class SidebarV2 extends React.Component {
     }
     else if(this.state.toDashboard === "3"){
         console.log(this.state.toDashboard);
-      tt = <Pdf></Pdf>
+      tt = <Pdf classes={this.updateClasses}/>
     }
     
       

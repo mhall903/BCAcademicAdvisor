@@ -98,7 +98,7 @@ export default class Pdf extends Component {
 
       } while (jobStatus.length <= 0 && count < 15)
 
-      console.log(jobStatus);
+      this.props.classes(jobStatus);
     }
     catch (e) {
       console.log(e);
