@@ -5,6 +5,9 @@ import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify'
 import config from './config';
 import SidebarV2 from './components/SidebarV2';
+import {HashRouter} from 'react-router-dom';
+
+
 
 
 Amplify.configure({
@@ -37,12 +40,12 @@ Amplify.Storage.configure({
     identityPoolId: Amplify.Storage.identityPoolId
 })
 
-console.log(typeof(cc))
 ReactDOM.render(
 //    <Sidebar />, mountNode
-    
+<HashRouter>
         <SidebarV2/>
-        
+        </HashRouter>
+
 
 
     ,document.getElementById('root')
