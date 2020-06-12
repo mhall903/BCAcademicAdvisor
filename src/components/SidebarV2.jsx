@@ -6,7 +6,7 @@ import {
 } from '@ant-design/icons';
 import React from "react";
 import Router from '../Router';
-import Degree from "./DegreePage"
+import DegreePage from "./DegreePage"
 import Login from "./LoginPage"
 import Pdf from "./Pdf"
 
@@ -62,7 +62,7 @@ export default class SidebarV2 extends React.Component {
       console.log(this.state.toDashboard);
       console.log("Class results? ");
       console.log(this.state.classResult);
-      tt = <Degree classes={this.state.classResult}></Degree>   
+      tt = <DegreePage classes={this.state.classResult}></DegreePage>   
     }
     else if(this.state.toDashboard ==="2"){
                console.log(this.state.toDashboard);
@@ -84,7 +84,7 @@ export default class SidebarV2 extends React.Component {
           
           <div className="logo" />
           
-          <Menu theme="dark" defaultSelectedKeys={['2']} mode="inline" onClick={this.handleMenuClick}>>
+          <Menu theme="dark" defaultSelectedKeys={['2']} mode="inline" onClick={this.handleMenuClick}>
             <Menu.Item key="2" icon={<ContactsOutlined />}>
               Login
             </Menu.Item>

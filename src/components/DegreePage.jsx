@@ -4,16 +4,16 @@ import "./DegreePage.css";
 import DegreeChooser from "./DegreeChooser";
 import Degree from "./Degree";
 
-export default function DegreePage() {
+export default function DegreePage(props) {
   //const [test,setTest] = useState();
 
   const { Panel } = Collapse;
   const [De, setDe] = useState("");
-
+  //console.log(props.classes);
   /*
 De: Degree
 */
-
+  
 
   /*
   Callback: get the data from DegreeChooser
@@ -34,19 +34,19 @@ De: Degree
       <div>
         <Collapse bordered={false} defaultActiveKey={["0"] }>
           <Panel header="Core Classes" key="1">
-            <Degree cType={"core"} pDegree={De} key="1">1</Degree>
+            <Degree Tclasses={props.classes} cType={"core"} pDegree={De} key="1">1</Degree>
           </Panel>
           <Panel header="Upper Classes" key="2">
-            <Degree cType={"upper"} pDegree={De} key="2">2</Degree>
+            <Degree Tclasses={props.classes} cType={"upper"} pDegree={De} key="2">2</Degree>
           </Panel>
           <Panel header="diversity Classes" key="3">
-            <Degree cType={"diversity"} pDegree={De} key="3">3</Degree>
+            <Degree Tclasses={props.classes} cType={"diversity"} pDegree={De} key="3">3</Degree>
           </Panel>
           <Panel header="Social Science Classes" key="4">
-            <Degree cType={"social"} pDegree={De} key="4">4</Degree>
+            <Degree Tclasses={props.classes} cType={"social"} pDegree={De} key="4">4</Degree>
           </Panel>
           <Panel header="General Education requirements" key="5">
-            <Degree cType={"gened"} pDegree={De} key="5">5</Degree>
+            <Degree Tclasses={props.classes} cType={"gened"} pDegree={De} key="5">5</Degree>
           </Panel>
         </Collapse>
       </div>

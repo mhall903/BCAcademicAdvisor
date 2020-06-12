@@ -88,7 +88,7 @@ export default function LoginPage() {
   
 
   return (
-    <div className="home" style={homeImage}>
+    <div className="home" >
       <Row type="flex" justify="center" align="middle">
         <Col type="flex">
           <Card style={{ width: 500 }}>

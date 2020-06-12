@@ -19,6 +19,7 @@ export default class Degree extends React.Component {
       DegreeF: props.pDegree,
       Type: "",
       RequireNum: 0,
+      Tclasses : props.classes
     };
   }
   /**
@@ -64,9 +65,11 @@ export default class Degree extends React.Component {
    * Init
    */
   componentDidMount() {
+
     this.setState({
       DegreeF: this.props.pDegree,
       Type: this.props.cType,
+      Tclasses: this.props.Tclasses
     });
     this.GetClassInfo();
   }
@@ -75,7 +78,11 @@ export default class Degree extends React.Component {
    * Update the class list when degree is choosed
    */
   async GetClassInfo() {
+    
+
+
     try {
+      console.log("gci:"+this.props.Tclasses)
       const returnedDegrees = await API.get(
         "bcadmin",
         `/degree/${this.state.DegreeF}`
@@ -136,9 +143,23 @@ export default class Degree extends React.Component {
       console.log(`Failed to load degree information: ${e.message}`);
       console.log(e);
     }
+    const temp = this.state.Progess;
+    for(var i in this.props.Tclasses){
+      console.log("for i:" + i.trim());
+      if(this.state.Classes.indexOf(i) != -1){
+        temp.push(i.trim());
+        this.updateMarker(i.trim(), "success"); //Change the Icon
+      }
+      this.setState({
+        Per: this.state.Progess.length / this.state.RequireNum,
+      });
+    }
+    console.log(temp);
+    
   }
 
   render() {
+    
     return (
       <div className="C">
         <Progress percent={this.state.Per * 100}></Progress>
@@ -158,7 +179,7 @@ export default class Degree extends React.Component {
                   onClick={() => this.handleClick(i)}
                 {c}
                 </Card>>*/}
-                <Tag color="default" color={this.getMarker(i)} id={i} key={i} onClick={()=>this.handleClick(i)}>{c} </Tag>
+                <Tag color="default" color={this.getMarker(c)} id={c} key={c} onClick={()=>this.handleClick(c)}>{c} </Tag>
                   
               </Col>
             ))}
