@@ -4,14 +4,16 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify'
 import config from './config';
-import Router from './Router'
+import SidebarV2 from './components/SidebarV2';
+import {HashRouter} from 'react-router-dom';
+
 
 
 
 Amplify.configure({
     Auth: {
         mandatorySignIn: true,
-        region: config.cognito.region,
+        region: config.cognito.REGION,
         userPoolId: config.cognito.USER_POOL_ID,
         identityPoolId: config.cognito.IDENTITY_POOL_ID,
         userPoolWebClientId: config.cognito.APP_CLIENT_ID
@@ -32,12 +34,18 @@ Amplify.configure({
     }
 });
 
-console.log(typeof(cc))
+Amplify.Storage.configure({
+    bucket: Amplify.Storage.bucket,
+    region: Amplify.Storage.region,
+    identityPoolId: Amplify.Storage.identityPoolId
+})
+
 ReactDOM.render(
 //    <Sidebar />, mountNode
-    
-        <Router/>
-        
+<HashRouter>
+        <SidebarV2/>
+        </HashRouter>
+
 
 
     ,document.getElementById('root')

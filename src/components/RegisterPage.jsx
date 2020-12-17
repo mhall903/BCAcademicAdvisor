@@ -9,6 +9,7 @@ import {
   Alert,
 } from "antd";
 import { useHistory } from "react-router-dom";
+import RegisterSuccess from "./RegisterSuccess";
 
 export default function Register() {
   const [password, setPassword] = useState("");
@@ -17,6 +18,7 @@ export default function Register() {
   const [err, setErr] = useState("");
   const [showWarning, setWarning] = useState(false);
   const history = useHistory();
+  const [success,setSuccess] = useState(false);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -44,7 +46,8 @@ export default function Register() {
 
   //Jump to confirm page, might need to make another version for those who miss this page
   function ConfirmWindow() {
-    history.push({ pathname: "/Success", state: { email: email } });
+    //history.push({ pathname: "/Success" ,target="_blank" , state: { email: email } });
+    setSuccess(true);
   }
 
   //Warning
@@ -95,6 +98,7 @@ export default function Register() {
       setLoadings(newLoadings)
     }, 5000);*/
   };
+  if(!success){
   return (
     <div>
       <Warning warn={showWarning}></Warning>
@@ -191,4 +195,11 @@ export default function Register() {
       </Form>
     </div>
   );
+} else if(success){
+  console.log(email);
+    return (
+      <RegisterSuccess email={email}></RegisterSuccess>
+    )
 }
+}
+

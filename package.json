@@ -10,13 +10,17 @@
     "@types/react-select": "^3.0.10",
     "antd": "^4.2.0",
     "aws-amplify": "^3.0.9",
+    "aws-sdk": "^2.692.0",
+    "axios": "^0.19.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-loading-overlay": "^1.0.1",
     "react-native-hr": "^1.1.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "react-select": "^3.0.8"
+    "react-select": "^3.0.8",
+    "react-spinners": "^0.8.3",
+    "weak-key": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -3,12 +3,12 @@ import React from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
 
-//I WILL CHANGE THIS TO FUNCTION
 export default class RegisterSuccess extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      email: props.location.state,
+      //email: props.location.state,
+      email:props.email,
       code: "",
       err: "",
       showWarning: false,
@@ -36,8 +36,9 @@ export default class RegisterSuccess extends React.Component {
   //send userID and confirm number to Cognito
   async Confirm() {
     try {
+      
       /*const user = */await Auth.confirmSignUp(
-        this.state.email.email,
+        this.props.email,
         this.state.code
       );
       this.setState({ Redirect: true });

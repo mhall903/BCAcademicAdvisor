@@ -12,6 +12,7 @@ export default function LoginPage() {
   const history = useHistory();
   const [err, setErr] = useState("");
   const [showWarning, setWarning] = useState(false);
+  const [RegisterSuccess,setRegisterSuccess] = useState(false);
 
   const { TabPane } = Tabs;
 
@@ -86,9 +87,8 @@ export default function LoginPage() {
   var formRef = React.createRef();
 
   
-
   return (
-    <div className="home" style={homeImage}>
+    <div className="home" >
       <Row type="flex" justify="center" align="middle">
         <Col type="flex">
           <Card style={{ width: 500 }}>
@@ -157,3 +157,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
